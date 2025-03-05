@@ -12,7 +12,7 @@ export class MjcAmbulanceWlList {
   private async getWaitingPatientsAsync(){
     return await Promise.resolve(
       [{
-          name: 'Jožko Púčik',
+          name: 'Tomáš Gruzín',
           patientId: '10001',
           estimatedStart: new Date(Date.now() + 65 * 60),
           estimatedDurationMinutes: 15,
