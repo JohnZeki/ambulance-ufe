@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { mjcAmbulanceWlEditor } from '../mjc-ambulance-wl-editor';
+import { MjcAmbulanceWlEditor } from '../mjc-ambulance-wl-editor';
 
 describe('mjc-ambulance-wl-editor', () => {
   it('buttons shall be of different type', async () => {
     const page = await newSpecPage({
-      components: [mjcAmbulanceWlEditor],
+      components: [MjcAmbulanceWlEditor],
       html: `<mjc-ambulance-wl-editor entry-id="@new"></mjc-ambulance-wl-editor>`,
     });
     let items: any = await page.root.shadowRoot.querySelectorAll("md-filled-button");
