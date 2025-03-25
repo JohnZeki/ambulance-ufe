@@ -56,6 +56,7 @@ export class MjcAmbulanceWlApp {
       <Host>
       { element === "editor"
       ? <mjc-ambulance-wl-editor entry-id={entryId}
+        ambulance-id={this.ambulanceId} api-base={this.apiBase}
         oneditor-closed={ () => navigate("./list")} >
       </mjc-ambulance-wl-editor>
       : <mjc-ambulance-wl-list  ambulance-id={this.ambulanceId} api-base={this.apiBase}
