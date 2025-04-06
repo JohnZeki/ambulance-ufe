@@ -35,6 +35,17 @@ export class MjcAmbulanceWlList {
       return [];
   }
 
+  statistics = {
+    averageDiagnosisTime: "2 dni",
+    averageHospitalizationTime: "7 dní",
+    departmentEfficiency: [
+      { department: "Interné", efficiency: "87 %" },
+      { department: "Chirurgia", efficiency: "75 %" },
+      { department: "Neurológia", efficiency: "92 %" }
+    ]
+  };
+  
+
   async componentWillLoad() {
     this.waitingPatients = await this.getWaitingPatientsAsync();
   }
@@ -45,15 +56,32 @@ export class MjcAmbulanceWlList {
         {this.errorMessage
           ? <div class="error">{this.errorMessage}</div>
           :
-        <md-list>
-          {this.waitingPatients.map((patient) =>
-            <md-list-item onClick={ () => this.entryClicked.emit(patient.id)}>
-              <div slot="headline">{patient.name}</div>
-              <div slot="supporting-text">{"Predpokladaný vstup: " + patient.estimatedStart?.toLocaleString()}</div>
-              <md-icon slot="start">person</md-icon>
-            </md-list-item>
-          )}
-        </md-list>
+          <div>
+            <md-list>
+              {this.waitingPatients.map((patient) =>
+                <md-list-item onClick={ () => this.entryClicked.emit(patient.id)}>
+                  <div slot="headline">{patient.name}</div>
+                  <div slot="supporting-text">{"Predpokladaný vstup: " + patient.estimatedStart?.toLocaleString()}</div>
+                  <md-icon slot="start">person</md-icon>
+                </md-list-item>
+              )}
+            </md-list>
+  
+            {/* Display Efficiency Tracking Stats */}
+            <div class="statistics">
+              <h3>Efektivita liečby (Treatment Efficiency)</h3>
+              <div class="stat">
+                <strong>Priemerný čas diagnostiky:</strong> 15 minút
+              </div>
+              <div class="stat">
+                <strong>Priemerný čas hospitalizácie:</strong> 2 dni
+              </div>
+              <div class="stat">
+                <strong>Efektivita oddelení:</strong> 80%
+              </div>
+            </div>
+  
+          </div>
         }
         <md-filled-icon-button class="add-button"
           onclick={() => this.entryClicked.emit("@new")}>
@@ -62,4 +90,5 @@ export class MjcAmbulanceWlList {
       </Host>
     );
   }
+  
 }
